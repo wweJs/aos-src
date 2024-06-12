@@ -1,0 +1,2 @@
+### root users database in non sql format. user example: user@server:password
+root@127.0.0.1:admin

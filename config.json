@@ -1,0 +1,6 @@
+{
+    "RAM": 512,
+    "DISK": 1024,
+    "CPU": "intel xeon",
+    "CPUCores": 1
+}
