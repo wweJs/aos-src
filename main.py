@@ -16,6 +16,8 @@ class AbuseOS:
     DISK = 0
     CPU = ""
     CPUCores = 0
+    version = "1.3.2"
+    Arch = "x64 AbuseOS-type"
 
     @staticmethod
     def main():
@@ -24,7 +26,7 @@ class AbuseOS:
         password = input("Enter password: ")
 
         if AbuseOS.validate_user(host, password):
-            print(f"{Style.BRIGHT}{Fore.GREEN}Welcome to aOs 1.3.1, {host}!{Style.RESET_ALL}")
+            print(f"{Style.BRIGHT}{Fore.GREEN}Welcome to aOS v{AbuseOS.version}, {host}!{Style.RESET_ALL}")
             AbuseOS.run_shell(host)
         else:
             print(f"{Fore.RED}Unknown password&host.{Style.RESET_ALL}")
@@ -70,6 +72,7 @@ class AbuseOS:
         argument2 = parts[2] if len(parts) > 2 else ""
 
         commands = {
+            "neofetch": AbuseOS.command_neofetch,
             "free": AbuseOS.command_free,
             "info": AbuseOS.command_info,
             "ram": AbuseOS.command_ram,
@@ -252,6 +255,7 @@ class AbuseOS:
     def show_help():
         help_text = """
         Available commands:
+        neofetch - Display System Info
         free -h    - Display free memory in human-readable format
         info       - Display system info
         ram        - Display RAM info
@@ -299,6 +303,39 @@ class AbuseOS:
     def copy_file(source_file, dest_file):
         shutil.copy2(source_file, dest_file)
         print("Executed script successfuly!")
+   
+    @staticmethod
+    def command_neofetch(_, hw):
+        ascii_art = f'''{Fore.GREEN}
+            _,met$$$$$gg.
+        ,g$$$$$$$$$$$$$$$P.
+      ,g$$P{Fore.RED}"{Style.RESET_ALL}     """\"\"\"Y$$.""{Fore.GREEN}.
+     ,$$P{Fore.RED}'{Style.RESET_ALL}              """$$.{Fore.GREEN}
+   ,'$$P       ,ggs.     """$$b:{Style.RESET_ALL}
+   `d$$'     ,$P{Fore.RED}"{Style.RESET_ALL}        """$$
+    $$P      d$"            $$P
+    $$:      $$"   -        ,$$'
+    $$;      Y$b._   _,d$$P'
+    Y$$b      `.`"Y$$$$P"'
+     `"Y$$.
+        `$$b.
+          `Y$$.
+            `$$b.
+              `Y$$.
+                 `$$b.
+                   `Y$$.
+        '''
+        print(ascii_art)
+
+        # Вывод информации о системе
+        print(f"OS: {Fore.CYAN}aOS{Style.RESET_ALL}")
+        print(f"Version: {Fore.CYAN}{AbuseOS.version}{Style.RESET_ALL}")
+        print(f"Arch: {Fore.CYAN}{AbuseOS.Arch}{Style.RESET_ALL}")
+        print(f"RAM: {Fore.CYAN}{AbuseOS.RAM} MB{Style.RESET_ALL}")
+        print(f"DISK: {Fore.CYAN}{AbuseOS.DISK} MB{Style.RESET_ALL}")
+        print(f"CPU: {Fore.CYAN}{AbuseOS.CPU}{Style.RESET_ALL}")
+        print(f"CPU Cores: {Fore.CYAN}x{AbuseOS.CPUCores}{Style.RESET_ALL}")
+        print(f"Current Time: {Fore.CYAN}{datetime.now().strftime('%Y-%m-%d %H:%M:%S')}{Style.RESET_ALL}")
 
 if __name__ == "__main__":
     AbuseOS.main()
